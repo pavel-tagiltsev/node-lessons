@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./index.js"
   },
   "author": " <pavel.tagiltsef@gmail.com>",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.18"
   }
 }
