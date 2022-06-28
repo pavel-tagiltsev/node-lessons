@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import authRouter from "./app/routes/auth.routes.js";
 
 dotenv.config();
 
@@ -12,6 +13,9 @@ const CORS_OPTIONS = {
 const app = express();
 
 app.use(cors(CORS_OPTIONS));
+app.use(express.json());
+
+authRouter(app);
 
 app.listen(PORT, (error) => {
   if (error) {
