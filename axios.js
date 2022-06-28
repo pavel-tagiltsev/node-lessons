@@ -14,12 +14,12 @@ dotenv.config();
 удалять его методом /v1/company/auth/revokeToken
 */
 
-const GET_TOKEN_URL = "/v1/company/auth/getToken";
-const REVOKE_TOKEN_URL = "/v1/company/auth/revokeToken";
+const GET_TOKEN_URL = "/auth/getToken";
+const REVOKE_TOKEN_URL = "/auth/revokeToken";
 const UPDATE_TOKEN_PERIOD = 518400000; // 6 days
 
 const instance = axios.create({
-  baseURL: "https://api.moyklass.com",
+  baseURL: "https://api.moyklass.com/v1/company",
   headers: {
     post: {
       "Content-Type": "application/json",
