@@ -1,10 +1,36 @@
 import * as controller from "../controllers/moy-klass.controller.js";
+import { authJwt } from "../middlewares/index.js";
 
 export default (app) => {
-  app.get("/api/moy-klass/filials", controller.getFilials);
-  app.get("/api/moy-klass/groups", controller.getGroups);
-  app.get("/api/moy-klass/lessons", controller.getLessons);
-  app.get("/api/moy-klass/students", controller.getStudents);
-  app.post("/api/moy-klass/lessonRecords/:id", controller.changeRecordStatus);
-  app.post("/api/moy-klass/lessons/:id/status", controller.changeLessonStatus);
+  app.get(
+    "/api/moy-klass/filials",
+    [authJwt.verifyToken],
+    controller.getFilials
+  );
+
+  app.get("/api/moy-klass/groups", [authJwt.verifyToken], controller.getGroups);
+
+  app.get(
+    "/api/moy-klass/lessons",
+    [authJwt.verifyToken],
+    controller.getLessons
+  );
+
+  app.get(
+    "/api/moy-klass/students",
+    [authJwt.verifyToken],
+    controller.getStudents
+  );
+
+  app.post(
+    "/api/moy-klass/lessonRecords/:id",
+    [authJwt.verifyToken],
+    controller.changeRecordStatus
+  );
+
+  app.post(
+    "/api/moy-klass/lessons/:id/status",
+    [authJwt.verifyToken],
+    controller.changeLessonStatus
+  );
 };
