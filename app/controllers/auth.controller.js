@@ -5,15 +5,16 @@ export async function signin(req, res) {
   const user = await User.findOne("email", req.body.email);
 
   if (!user) {
-    return res.status(404).send({ message: "User Not found." });
+    return res.status(401).send({
+      message: "Invalid username or password.",
+    });
   }
 
-  const passwordIsValid = +req.body.password === +user.password;
+  const isPasswordValid = req.body.password === user.password;
 
-  if (!passwordIsValid) {
+  if (!isPasswordValid) {
     return res.status(401).send({
-      accessToken: null,
-      message: "Invalid Password!",
+      message: "Invalid username or password.",
     });
   }
 

@@ -1,3 +1,3 @@
-import authJwt from "./authJwt.js";
+import * as auth from "./auth.js";
 
-export { authJwt };
+export { auth };
