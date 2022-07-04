@@ -12,7 +12,23 @@ const __dirname = path.dirname(__filename);
 
 export default async function createUsers() {
   const users = await axios.get("/managers");
-  const oldUsers = await User.getAll();
+  let oldUsers = await User.getAll();
+
+  if (!oldUsers) {
+    if (usersPasswords.length !== 0) {
+      fs.writeFile(
+        path.join(__dirname, ".", "data", "users.json"),
+        "[]",
+        (err) => {
+          if (err) {
+            return console.log(err);
+          }
+          console.log('data created.')
+          oldUsers = await User.getAll();
+        }
+      );
+    }
+  }
 
   let usersPasswords = [];
 
