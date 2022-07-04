@@ -15,19 +15,17 @@ export default async function createUsers() {
   let oldUsers = await User.getAll();
 
   if (!oldUsers) {
-    if (usersPasswords.length !== 0) {
-      fs.writeFile(
-        path.join(__dirname, ".", "data", "users.json"),
-        "[]",
-        (err) => {
-          if (err) {
-            return console.log(err);
-          }
-          console.log('data created.')
-          oldUsers = await User.getAll();
+    fs.writeFile(
+      path.join(__dirname, ".", "data", "users.json"),
+      "[]",
+      async (err) => {
+        if (err) {
+          return console.log(err);
         }
-      );
-    }
+        console.log("data created.");
+        oldUsers = await User.getAll();
+      }
+    );
   }
 
   let usersPasswords = [];
