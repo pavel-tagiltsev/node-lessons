@@ -41,7 +41,7 @@ export default class User {
     });
   }
 
-  static findOne(name, value) {
+  static async findOne(name, value) {
     return new Promise((resolve, reject) => {
       fs.readFile(
         path.join(__dirname, "..", "..", "data", "users.json"),
@@ -60,7 +60,7 @@ export default class User {
     });
   }
 
-  static getAll() {
+  static async getAll() {
     return new Promise((resolve, reject) => {
       fs.readFile(
         path.join(__dirname, "..", "..", "data", "users.json"),

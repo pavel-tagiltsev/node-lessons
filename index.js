@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./app/routes/auth.routes.js";
 import moyKlassRoutes from "./app/routes/moy-klass.routes.js";
+import createUsers from "./createUsers.js";
+
+await createUsers();
 
 dotenv.config();
 

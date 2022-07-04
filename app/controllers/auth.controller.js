@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
@@ -10,7 +11,7 @@ export async function signin(req, res) {
     });
   }
 
-  const isPasswordValid = req.body.password === user.password;
+  const isPasswordValid = bcrypt.compareSync(req.body.password, user.password);
 
   if (!isPasswordValid) {
     return res.status(401).send({
