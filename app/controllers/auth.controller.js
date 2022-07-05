@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/user.model.js";
+import db from "../models/index.js";
 
 export async function signin(req, res) {
-  const user = await User.findOne("email", req.body.email);
+  const user = await db.user.findOne({ email: req.body.email });
 
   if (!user) {
     return res.status(401).send({

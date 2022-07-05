@@ -3,9 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./app/routes/auth.routes.js";
 import moyKlassRoutes from "./app/routes/moy-klass.routes.js";
-import createUsers from "./createUsers.js";
-
-await createUsers();
+import Database from "./Database.js";
 
 dotenv.config();
 
@@ -29,3 +27,5 @@ app.listen(PORT, (error) => {
 
   console.log(`Server is running on port: ${PORT}`);
 });
+
+new Database(process.env.DB_CONNECTION_URI).init();
