@@ -4,6 +4,7 @@ import cors from "cors";
 import authRoutes from "./app/routes/auth.routes.js";
 import moyKlassRoutes from "./app/routes/moy-klass.routes.js";
 import Database from "./Database.js";
+import bot from "./telegram/english-colours-bot.js";
 
 dotenv.config();
 
@@ -16,6 +17,11 @@ const app = express();
 
 app.use(cors(CORS_OPTIONS));
 app.use(express.json());
+app.use(
+  await bot.createWebhook({
+    domain: process.env.ENGLISH_COLOURS_BOT_DOMAIN,
+  })
+);
 
 authRoutes(app);
 moyKlassRoutes(app);
